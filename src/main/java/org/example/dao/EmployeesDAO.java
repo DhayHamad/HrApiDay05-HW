@@ -10,7 +10,7 @@ public class EmployeesDAO {
     private static final String SELECT_ALL_EMPLOYEES = "select * from employees";
     private static final String SELECT_ONE_EMPLOYEES = "select * from employees where employee_id = ?";
     private static final String INSERT_EMPLOYEES = "insert into employees values (?, ?, ?, ?, ?, ?,null, ?,null,null)";
-    private static final String UPDATE_EMPLOYEES= "update employees set farst_Name = ?, last_Name = ? ,email = ? ,Phone_number = ? ,Hire_date = ? ,Salary = ? where employee_id = ?";
+    private static final String UPDATE_EMPLOYEES= "update employees set first_Name = ?, last_Name = ? ,email = ? ,Phone_number = ? ,Hire_date = ? ,Salary = ? where employee_id = ?";
     private static final String DELETE_EMPLOYEES = "delete from employees where employees_id = ?";
 
     public void insertEmployees(Employees e) throws SQLException, ClassNotFoundException {
