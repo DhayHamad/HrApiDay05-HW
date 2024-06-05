@@ -9,8 +9,11 @@ public class EmployeesDAO {
     private static final String URL = "jdbc:sqlite:C:\\Users\\dev\\IdeaProjects\\SDAIA-Course-HW\\src\\main\\java\\HW\\day4\\hr.db";
     private static final String SELECT_ALL_EMPLOYEES = "select * from employees";
     private static final String SELECT_ONE_EMPLOYEES = "select * from employees where employee_id = ?";
-    private static final String INSERT_EMPLOYEES = "insert into employees values (?, ?, ?, ?, ?, ?,null, ?,null,null)";
-    private static final String UPDATE_EMPLOYEES= "update employees set first_Name = ?, last_Name = ? ,email = ? ,Phone_number = ? ,Hire_date = ? ,Salary = ? where employee_id = ?";
+    private static final String SELECT_EMPLIYEE_WITH_SALARY = "select * from employees where salary = ?";
+    private static final String SELECT_EMPLIYEE_WITH_SALARY_PAGINATION = "select * from employees where salary = ? order by employee_id limit ? offset ?";
+    private static final String SELECT_EMPLIYEE_WITH_PAGINATION = "select * from employees order by employee_id limit ? offset ?";
+    private static final String INSERT_EMPLOYEES = "insert into employees values (?, ?, ?, ?, ?, ?,?, ?, ?, ?)";
+    private static final String UPDATE_EMPLOYEES= "update employees set first_name = ?, last_name = ? ,email = ? ,phone_number = ? ,hire_date = ? ,job_id = ?,Salary = ? ,manager_id = ? ,department_id = ? where employee_id = ?";
     private static final String DELETE_EMPLOYEES = "delete from employees where employees_id = ?";
 
     public void insertEmployees(Employees e) throws SQLException, ClassNotFoundException {
@@ -23,7 +26,10 @@ public class EmployeesDAO {
         st.setString(4, e.getEmail());
         st.setString(5, e.getPhoneNumber());
         st.setString(6, e.getHireDate());
-        st.setDouble(7, e.getSalary());
+        st.setInt(7, e.getJobId());
+        st.setDouble(8, e.getSalary());
+        st.setInt(9, e.getManagerId());
+        st.setInt(10, e.getDepartmentId());
 
         st.executeUpdate();
         //conn.close();
@@ -39,7 +45,10 @@ public class EmployeesDAO {
         st.setString(4, e.getPhoneNumber());
         st.setString(5, e.getHireDate());
         st.setDouble(6, e.getSalary());
-        st.setInt(   7, e.getEmployeesId());
+        st.setInt(7, e.getJobId());
+        st.setInt(8, e.getEmployeesId());
+        st.setInt(9, e.getDepartmentId());
+        st.setInt(   10, e.getEmployeesId());
 
         st.executeUpdate();
         //conn.close();
