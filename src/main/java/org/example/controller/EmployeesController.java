@@ -8,60 +8,60 @@ import java.util.ArrayList;
 
 @Path("/employees")
 public class EmployeesController {
-
     EmployeesDAO dao = new EmployeesDAO();
 
     @GET
-    public ArrayList<Employees> selectAllEmployees(){
+    public ArrayList<Employees> SELECT_ALL_EMPLOYEES() {
+
         try {
             return dao.selectAllEmployees();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @GET
-    @Path("{empId}")
-    public Employees getEmployees(@PathParam("empId") int empId) {
+    @Path("{employee_id}")
+    public Employees SELECT_ONE_EMPLOYEE(@PathParam("employee_id") int employee_id) {
 
         try {
-            return dao.selectEmployees(empId);
+            return dao.selectEmployees(employee_id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @DELETE
-    @Path("{empId}")
-    public void deleteEmployees(@PathParam("empId") int empId) {
+    @Path("{employee_id}")
+    public void DELETE_JOB(@PathParam("employee_id") int employee_id) {
 
         try {
-            dao.deleteEmployees(empId);
+            dao.deleteEmployees(employee_id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+
     @POST
-    public void insertEmployees(Employees employees) {
+    public void INSERT_JOB(Employees Employees) {
 
         try {
-            dao.insertEmployees(employees);
+            dao.insertEmployees(Employees);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @PUT
-    @Path("{empId}")
-    public void updateEmployees(@PathParam("empId") int empId,Employees employees) {
+    @Path("{employee_id}")
+    public void UPDATE_JOB(@PathParam("employee_id") int employee_id, Employees employees) {
 
         try {
-            employees.setEmployeesId(empId);
+            employees.setJob_id(employee_id);
             dao.updateEmployees(employees);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
 }

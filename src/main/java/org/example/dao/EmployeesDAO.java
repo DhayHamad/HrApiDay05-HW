@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class EmployeesDAO {
-    private static final String URL = "jdbc:sqlite:C:\\Users\\dev\\IdeaProjects\\SDAIA-Course-HW\\src\\main\\java\\HW\\day4\\hr.db";
+    private static final String URL = "jdbc:sqlite:C:\\Users\\dev\\IdeaProjects\\HrApiDay05-HW\\src\\main\\java\\org\\example\\hr.db";
     private static final String SELECT_ALL_EMPLOYEES = "select * from employees";
     private static final String SELECT_ONE_EMPLOYEES = "select * from employees where employee_id = ?";
     private static final String SELECT_EMPLIYEE_WITH_SALARY = "select * from employees where salary = ?";
@@ -14,22 +14,22 @@ public class EmployeesDAO {
     private static final String SELECT_EMPLIYEE_WITH_PAGINATION = "select * from employees order by employee_id limit ? offset ?";
     private static final String INSERT_EMPLOYEES = "insert into employees values (?, ?, ?, ?, ?, ?,?, ?, ?, ?)";
     private static final String UPDATE_EMPLOYEES= "update employees set first_name = ?, last_name = ? ,email = ? ,phone_number = ? ,hire_date = ? ,job_id = ?,Salary = ? ,manager_id = ? ,department_id = ? where employee_id = ?";
-    private static final String DELETE_EMPLOYEES = "delete from employees where employees_id = ?";
+    private static final String DELETE_EMPLOYEES = "delete from employees where employee_id = ?";
 
     public void insertEmployees(Employees e) throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(INSERT_EMPLOYEES);
-        st.setInt(1, e.getEmployeesId());
-        st.setString(2, e.getFirstName());
-        st.setString(3, e.getLastName());
+        st.setInt(1, e.getEmployee_id());
+        st.setString(2, e.getFirst_name());
+        st.setString(3, e.getLast_name());
         st.setString(4, e.getEmail());
-        st.setString(5, e.getPhoneNumber());
-        st.setString(6, e.getHireDate());
-        st.setInt(7, e.getJobId());
+        st.setString(5, e.getPhone_number());
+        st.setString(6, e.getHire_date());
+        st.setInt(7, e.getJob_id());
         st.setDouble(8, e.getSalary());
-        st.setInt(9, e.getManagerId());
-        st.setInt(10, e.getDepartmentId());
+        st.setInt(9, e.getManager_id());
+        st.setInt(10, e.getDepartment_id());
 
         st.executeUpdate();
         //conn.close();
@@ -39,16 +39,16 @@ public class EmployeesDAO {
         Class.forName("org.sqlite.JDBC");
         Connection conn = DriverManager.getConnection(URL);
         PreparedStatement st = conn.prepareStatement(UPDATE_EMPLOYEES);
-        st.setString(1, e.getFirstName());
-        st.setString(2, e.getLastName());
+        st.setString(1, e.getFirst_name());
+        st.setString(2, e.getLast_name());
         st.setString(3, e.getEmail());
-        st.setString(4, e.getPhoneNumber());
-        st.setString(5, e.getHireDate());
+        st.setString(4, e.getPhone_number());
+        st.setString(5, e.getHire_date());
         st.setDouble(6, e.getSalary());
-        st.setInt(7, e.getJobId());
-        st.setInt(8, e.getEmployeesId());
-        st.setInt(9, e.getDepartmentId());
-        st.setInt(   10, e.getEmployeesId());
+        st.setInt(7, e.getJob_id());
+        st.setInt(8, e.getEmployee_id());
+        st.setInt(9, e.getDepartment_id());
+        st.setInt(   10, e.getEmployee_id());
 
         st.executeUpdate();
         //conn.close();
